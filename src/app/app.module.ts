@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemsModule } from './items/items.module';
 import { VendorsModule } from './vendors/vendors.module';
 import { OrdersModule } from './orders/orders.module';
+import { AuthModule } from './auth/auth.module'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -18,7 +20,8 @@ import { OrdersModule } from './orders/orders.module';
     BrowserAnimationsModule,
     ItemsModule,
     VendorsModule,
-    OrdersModule
+    OrdersModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

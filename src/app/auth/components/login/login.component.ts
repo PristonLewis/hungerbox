@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
     }
     if (this.registerForm.value.roleName == 'vendor') {
 
-      this.router.navigate(['/orders']);
+      this.router.navigate(['/vendoritem']);
 
     }
     if (this.registerForm.value.roleName == 'user') {

@@ -5,12 +5,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './components/admin/admin.component';
+import { VendorComponent } from 'src/app/auth/components/vendor/vendor.component';
+import { AddvendorComponent } from './components/addvendor/addvendor.component';
+
 
 
 
 
 @NgModule({
-    declarations: [LoginComponent, AdminComponent],
+    declarations: [LoginComponent, AdminComponent, VendorComponent, AddvendorComponent],
     imports: [
         CommonModule,
         BrowserAnimationsModule,

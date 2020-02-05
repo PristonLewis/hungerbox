@@ -13,7 +13,7 @@ export class VendorListComponent implements OnInit {
   public vendorsList: any;
   constructor(private http: HttpService, private router: Router) {
     this.data = {
-      mainContent : 'dsdsf' ,
+      mainContent: 'dsdsf',
       subContent: 'sdfdsf'
     };
     this.vendorsList = [{
@@ -23,9 +23,9 @@ export class VendorListComponent implements OnInit {
       vendorId: 2122,
       vendorName: 'Juice Junction'
     }];
-   }
+  }
   ngOnInit() {
-    console.log(this.http.getConfigurations());
+    // console.log(this.http.getConfigurations());
   }
 
   // navigates to the item list components passing vendorId as a parameter

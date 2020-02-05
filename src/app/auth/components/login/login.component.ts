@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpService } from 'src/app/shared/http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
@@ -12,23 +12,35 @@ export class LoginComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  Roledetails: any = ['Admin', 'Vendor', 'user'];
+
+
+
+  constructor(private formBuilder: FormBuilder, private httpService: HttpService, ) {
+
+
+  }
 
   ngOnInit() {
+
     this.registerForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+
+      uName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required],
-      acceptTerms: [false, Validators.requiredTrue]
+      roleName: ['', [Validators.required]]
+
     });
   }
   get f() { return this.registerForm.controls; }
 
   onSubmit() {
+
+
     this.submitted = true;
+
+
+    console.log(this.registerForm.value)
+
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {

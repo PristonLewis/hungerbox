@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList
 
 export class ItemCardComponent implements OnInit {
 
-  constructor() { }
+
   @Input() type: string;
   @Input() actionRequired: boolean;
   @Input() mainContent: string;
@@ -19,15 +19,23 @@ export class ItemCardComponent implements OnInit {
   @ViewChildren('itemCard') itemCard: QueryList<ElementRef>;
   @ViewChildren('itemMenu') itemMenu: QueryList<ElementRef>;
   public selectedItems: any;
+
+  constructor() {
+
+   }
   ngOnInit() {
-    this.selectedItems = new Array(this.length);
+    console.log('I am here');
+    this.selectedItems = new Array(this.length).fill(0);
   }
+
   // Pass the value changed event to the parent component
   public valueChanged(index): void {
-    console.log(this.length);
+    let val;
     this.itemCard.forEach((native) => {
-      this.selectedItems[index] = parseInt(native.nativeElement.value, 10);
+      val = parseInt(native.nativeElement.value, 10);
     });
+    this.selectedItems[index] = val;
     this.itemsChanged.emit(this.selectedItems);
+    console.log('tged', this.selectedItems);
   }
 }

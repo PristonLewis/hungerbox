@@ -12,22 +12,28 @@ export class ItemsComponent implements OnInit {
 
   public itemList: any;
   public noOfItems: number = 0;
+
   @ViewChildren('itemCard') itemCard: QueryList<ElementRef>;
+
   constructor(private snackBar: MatSnackBar, private router: Router, private activatedRoute: ActivatedRoute, private http: HttpService) { }
-  public vendorId: any;
-  ngOnInit() {
+  public vendorId: string;
+
+  public ngOnInit(): void {
+    // getting the vendor id from the url and passing it to the vendor items api to get the list of items
     this.activatedRoute.params.subscribe((route: any) => {
+      this.vendorId = route.id;
       this.http.getRequest('/items/allItem').subscribe((vendorList: any) => {
-        this.itemList = vendorList;
+        this.itemList = vendorList.items;
       });
     });
-
-
   }
 
-  private sum(total, num): number {
+  // reduce function to sum all the items in an array
+  private sum(total: number, num: number): number {
     return total + num;
   }
+
+  // Adds the items to the cart and stores the data in local storage for further processing
   public updateTheCart(event: any) {
     this.noOfItems = event.reduce(this.sum);
     const snackBarRef: any = this.snackBar.open(this.noOfItems + ' items', 'View Cart');
@@ -38,11 +44,11 @@ export class ItemsComponent implements OnInit {
     let grandTotal: number = 0;
     event.forEach((data, index) => {
         if (data) {
-          grandTotal += data * this.itemList[index].itemPrice;
+          grandTotal += data * this.itemList[index].price;
           const obj: any = {
             itemName : this.itemList[index].itemName ,
             quantity: data,
-            price: this.itemList[index].itemPrice,
+            price: this.itemList[index].price,
             total: grandTotal,
             itemId : this.itemList[index].itemId,
             vId : this.vendorId
@@ -50,8 +56,6 @@ export class ItemsComponent implements OnInit {
           orderDetails.push(obj);
         }
     });
-    console.log('orderDetails', orderDetails);
     localStorage.setItem('cart', JSON.stringify(orderDetails));
   }
-
 }

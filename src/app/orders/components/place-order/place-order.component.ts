@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/http.service';
-
+import { Router } from '@angular/router';
+declare var $: any;
 @Component({
   selector: 'app-place-order',
   templateUrl: './place-order.component.html',
@@ -8,12 +9,15 @@ import { HttpService } from 'src/app/shared/http.service';
 })
 export class PlaceOrderComponent implements OnInit {
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private router: Router) { }
   public myOrderList: any;
+  public confirmationMessage: string;
+  public statusFlag: boolean;
   ngOnInit() {
       this.myOrderList = JSON.parse(localStorage.getItem('cart'));
   }
 
+  // Places the order
   public placeOrder(): void {
     const payload = {
       items: this.myOrderList,
@@ -21,8 +25,22 @@ export class PlaceOrderComponent implements OnInit {
       userId: '1'
     };
     this.http.postRequest('placeOrder', payload).subscribe((data: any) => {
-
+      this.confirmationMessage = 'Order placed successfully.';
+      this.statusFlag = true;
+      $('#successModal').modal('show');
+    }, (exception) => {
+      this.statusFlag = false;
+      this.confirmationMessage = 'Something went wrong.';
+      $('#successModal').modal('show');
     });
+  }
+
+  // action performed on modals OK button click
+  public ok() {
+    $('#successModal').modal('hide');
+    if (this.statusFlag) {
+      this.router.navigate(['/list']);
+    }
   }
 
 }

@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ItemsModule } from './items/items.module';
+import { VendorsModule } from './vendors/vendors.module';
+import { OrdersModule } from './orders/orders.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { ItemsModule } from './items/items.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ItemsModule
+    ItemsModule,
+    VendorsModule,
+    OrdersModule
   ],
   providers: [],
   bootstrap: [AppComponent]

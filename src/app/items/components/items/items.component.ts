@@ -10,6 +10,10 @@ export class ItemsComponent implements OnInit {
 
   constructor(private snackBar: MatSnackBar) { }
 
+  public data = {
+    mainContent : 'dsdsf',
+    subContent: 'sdfdsf'
+  };
   ngOnInit() {
     let snackBarRef = this.snackBar.open('Message archived', 'View Cart');
   }

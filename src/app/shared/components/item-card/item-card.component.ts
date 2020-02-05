@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChildren, QueryList, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-item-card',
@@ -13,7 +13,21 @@ export class ItemCardComponent implements OnInit {
   @Input() actionRequired: boolean;
   @Input() mainContent: string;
   @Input() subContent: string;
+  @Input() index: string;
+  @Input() length: number;
+  @Output() itemsChanged = new EventEmitter();
+  @ViewChildren('itemCard') itemCard: QueryList<ElementRef>;
+  @ViewChildren('itemMenu') itemMenu: QueryList<ElementRef>;
+  public selectedItems: any;
   ngOnInit() {
+    this.selectedItems = new Array(this.length);
   }
-
+  // Pass the value changed event to the parent component
+  public valueChanged(index): void {
+    console.log(this.length);
+    this.itemCard.forEach((native) => {
+      this.selectedItems[index] = parseInt(native.nativeElement.value, 10);
+    });
+    this.itemsChanged.emit(this.selectedItems);
+  }
 }

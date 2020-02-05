@@ -1,45 +1,9 @@
-<div id="demo" class="carousel slide" data-ride="carousel">
-
-    <!-- Indicators -->
-    <ul class="carousel-indicators">
-      <li data-target="#demo" data-slide-to="0" class="active"></li>
-      <li data-target="#demo" data-slide-to="1"></li>
-      <li data-target="#demo" data-slide-to="2"></li>
-    </ul>
-  
-    <!-- The slideshow -->
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div class="jumbotron">
-            <h1>Some content</h1>
-            <p>Some content will go here...</p>
-          </div>
-      </div>
-      <div class="carousel-item">
-        <div class="jumbotron">
-            <h1>Some content</h1>
-            <p>Some content will go here...</p>
-          </div>
-      </div>
-      <div class="carousel-item">
-        <div class="jumbotron">
-            <h1>Some content</h1>
-            <p>Some content will go here...</p>
-          </div>
-      </div>
-    </div>
-  
-    <!-- Left and right controls -->
-    <a class="carousel-control-prev" href="#demo" data-slide="prev">
-      <span class="carousel-control-prev-icon"></span>
-    </a>
-    <a class="carousel-control-next" href="#demo" data-slide="next">
-      <span class="carousel-control-next-icon"></span>
-    </a>
-  
+<div class="jumbotron" id="demo">
+    <h1>Items</h1>
+    <p>Choose your meals from the below options ...</p>
   </div>
   <div class="row">    
-    <div class="col-sm-12">
-        <app-item-card [actionRequired]=true [mainContent]="data.mainContent" [subContent]="data.subContent"></app-item-card>
+    <div class="col-sm-12" #itemCard *ngFor="let item of itemList; let i = index">
+        <app-item-card  (itemsChanged)="updateTheCart($event)" [length]="itemList.length" [actionRequired]=true [mainContent]="item.itemName" [subContent]="item.itemPrice" [index]="i"></app-item-card>
     </div>
   </div>      

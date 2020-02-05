@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpService } from 'src/app/shared/http.service';
 
 @Component({
   selector: 'app-items',
@@ -9,20 +10,66 @@ import { Router } from '@angular/router';
 })
 export class ItemsComponent implements OnInit {
 
-  constructor(private snackBar: MatSnackBar, private router: Router) { }
-
-  public data = {
-    mainContent : 'dsdsf',
-    subContent: 'sdfdsf'
-  };
+  public itemList: any;
+  public noOfItems: number = 0;
+  @ViewChildren('itemCard') itemCard: QueryList<ElementRef>;
+  constructor(private snackBar: MatSnackBar, private router: Router, private activatedRoute: ActivatedRoute, private http: HttpService) { }
+  public vendorId: any;
   ngOnInit() {
-    let snackBarRef = this.snackBar.open('No items', 'View Cart');
-    snackBarRef.onAction().subscribe(() => {
-      console.log('The snack-bar action was triggered!');
-      this.router.navigate(['/orders']);
+    this.activatedRoute.params.subscribe((route: any) => {
+      this.http.getRequest('/vendor/vendors').subscribe((vendorList: any) => {
+        this.itemList = [{
+            itemId: 1,
+            itemName: 'Dosa',
+            itemPrice: 100,
+            itemQty: 25,
+            itemType: 'Veg'
+        }, {
+          itemId: 2,
+          itemName: 'Poha',
+          itemPrice: 100,
+          itemQty: 25,
+          itemType: 'Veg'
+      }, {
+        itemId: 3,
+        itemName: 'Idli',
+        itemPrice: 100,
+        itemQty: 25,
+        itemType: 'Veg'
+    }];
+      });
     });
+
+
   }
 
-  
+  private sum(total, num): number {
+    return total + num;
+  }
+  public updateTheCart(event: any) {
+    this.noOfItems = event.reduce(this.sum);
+    const snackBarRef: any = this.snackBar.open(this.noOfItems + ' items', 'View Cart');
+    snackBarRef.onAction().subscribe(() => {
+      this.router.navigate(['/order']);
+    });
+    const orderDetails = [];
+    let grandTotal: number = 0;
+    event.forEach((data, index) => {
+        if (data) {
+          grandTotal += data * this.itemList[index].itemPrice;
+          const obj: any = {
+            itemName : this.itemList[index].itemName ,
+            quantity: data,
+            price: this.itemList[index].itemPrice,
+            total: grandTotal,
+            itemId : this.itemList[index].itemId,
+            vId : this.vendorId
+          };
+          orderDetails.push(obj);
+        }
+    });
+    console.log('orderDetails', orderDetails);
+    localStorage.setItem('cart', JSON.stringify(orderDetails));
+  }
 
 }

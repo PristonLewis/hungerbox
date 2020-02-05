@@ -8,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class PlaceOrderComponent implements OnInit {
 
   constructor() { }
-
+  public myOrderList: any;
   ngOnInit() {
+      this.myOrderList = JSON.parse(localStorage.getItem('cart'));
   }
 
 }

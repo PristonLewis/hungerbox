@@ -1,0 +1,33 @@
+<!-- main app container -->
+<div class="card m-3">
+
+    <div class="card-body">
+        <form [formGroup]="addvendor" (ngSubmit)="onSubmit()">
+
+
+
+            <div class="form-group col">
+                <label>User id</label>
+                <input type="number" formControlName="userid" class="form-control" value='1' />
+
+            </div>
+
+            <div class="form-group col">
+                <label>vendorName</label>
+                <input type="text" formControlName="vendorName" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.vendorName.errors }" />
+                <div *ngIf="submitted && f.vendorName.errors" class="invalid-feedback">
+                    <div *ngIf="f.vendorName.errors.required">Add Vendor name</div>
+                </div>
+            </div>
+
+
+
+
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Add vendor</button>
+
+            </div>
+        </form>
+    </div>
+</div>

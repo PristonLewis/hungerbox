@@ -1,1 +1,60 @@
-<p>vendorvendoritem works!</p>
+<!-- main app container -->
+<div class="card m-3">
+
+    <div class="card-body">
+        <form [formGroup]="additems" (ngSubmit)="onSubmit()">
+            <div class="form-group col">
+                <label>Item Name</label>
+                <input type="text" formControlName="itemName" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.itemName.errors }" />
+                <div *ngIf="submitted && f.itemName.errors" class="invalid-feedback">
+                    <div *ngIf="f.itemName.errors.required">Item Name</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col">
+                    <label>Item type</label>
+                    <select formControlName="itemType">
+                        <option>Select Role</option>
+                        <option>veg</option>
+                        <option>Non veg</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group col">
+                <label>Quantity</label>
+                <input type="number" formControlName="quantity" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.quantity.errors }" />
+                <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                    <div *ngIf="f.quantity.errors.required">type quantity</div>
+                </div>
+            </div>
+            <div class="form-group col">
+                <label>User id</label>
+                <input type="number" formControlName="userid" class="form-control" value='2' />
+
+            </div>
+
+            <div class="form-group col">
+                <label>price</label>
+                <input type="number" formControlName="price" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+                <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                    <div *ngIf="f.price.errors.required">price</div>
+                </div>
+            </div>
+
+
+
+
+            <div class="text-center">
+                <button class="btn btn-primary mr-1">Add item</button>
+
+            </div>
+        </form>
+    </div>
+</div>

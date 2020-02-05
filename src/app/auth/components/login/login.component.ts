@@ -12,12 +12,11 @@ export class LoginComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  Roledetails: any = ['Admin', 'Vendor', 'user'];
+  Roledetails: any = ['admin', 'Vendor', 'user'];
 
 
 
-  constructor(private formBuilder: FormBuilder, private httpService: HttpService, ) {
-
+  constructor(private httpService: HttpService, private formBuilder: FormBuilder) {
 
   }
 
@@ -38,8 +37,14 @@ export class LoginComponent implements OnInit {
 
     this.submitted = true;
 
+    this.httpService.postRequest('users/login', this.registerForm.value).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    )
 
-    console.log(this.registerForm.value)
+    console.log(this.registerForm.value);
+
+
 
 
     // stop here if form is invalid
@@ -47,8 +52,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    // display form values on success
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
+
   }
 
 

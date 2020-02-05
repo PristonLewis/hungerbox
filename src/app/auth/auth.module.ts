@@ -5,18 +5,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminComponent } from './components/admin/admin.component';
-import { VendorComponent } from './components/vendor/vendor.component';
 
 
 
 
 @NgModule({
-    declarations: [LoginComponent, AdminComponent, VendorComponent],
+    declarations: [LoginComponent, AdminComponent],
     imports: [
         CommonModule,
         BrowserAnimationsModule,
         FormsModule,
-        ReactiveFormsModule,
+        ReactiveFormsModule
 
     ]
 })

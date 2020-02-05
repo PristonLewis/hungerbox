@@ -1,13 +1,13 @@
 
 <div class="card">
-<div class="card-body">
+<div class="card-body"  >
     <div class="row">
     <div class="col-sm-9">  
-        <h5 class="card-title">{{mainContent}}</h5>
+        <h5 class="card-title" #itemMenu>{{mainContent}}</h5>
         <p>{{subContent}}</p>
     </div>
     <div class="col-sm-3" *ngIf="actionRequired"> 
-        <input type="number">
+        <input data-attr="mainContent" #itemCard (change)="valueChanged(index)" type="number" min=0 value="0">
     </div>        
     </div> 
 </div>

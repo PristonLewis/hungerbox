@@ -17,26 +17,8 @@ export class ItemsComponent implements OnInit {
   public vendorId: any;
   ngOnInit() {
     this.activatedRoute.params.subscribe((route: any) => {
-      this.http.getRequest('/vendor/vendors').subscribe((vendorList: any) => {
-        this.itemList = [{
-            itemId: 1,
-            itemName: 'Dosa',
-            itemPrice: 100,
-            itemQty: 25,
-            itemType: 'Veg'
-        }, {
-          itemId: 2,
-          itemName: 'Poha',
-          itemPrice: 100,
-          itemQty: 25,
-          itemType: 'Veg'
-      }, {
-        itemId: 3,
-        itemName: 'Idli',
-        itemPrice: 100,
-        itemQty: 25,
-        itemType: 'Veg'
-    }];
+      this.http.getRequest('/items/allItem').subscribe((vendorList: any) => {
+        this.itemList = vendorList;
       });
     });
 

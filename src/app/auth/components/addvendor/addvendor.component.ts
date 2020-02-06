@@ -21,7 +21,7 @@ export class AddvendorComponent implements OnInit {
     this.addvendor = this.formBuilder.group({
 
       vendorName: ['', Validators.required],
-      userid: ['1'],
+      userid: [1]
 
 
 

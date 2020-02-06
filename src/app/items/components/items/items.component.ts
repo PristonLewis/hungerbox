@@ -12,6 +12,7 @@ export class ItemsComponent implements OnInit {
 
   public itemList: any;
   public noOfItems: number = 0;
+  public selectedItems: Array<any> = [];
 
   @ViewChildren('itemCard') itemCard: QueryList<ElementRef>;
 
@@ -35,6 +36,7 @@ export class ItemsComponent implements OnInit {
 
   // Adds the items to the cart and stores the data in local storage for further processing
   public updateTheCart(event: any) {
+    this.selectedItems = event;
     this.noOfItems = event.reduce(this.sum);
     const snackBarRef: any = this.snackBar.open(this.noOfItems + ' items', 'View Cart');
     snackBarRef.onAction().subscribe(() => {
@@ -42,9 +44,14 @@ export class ItemsComponent implements OnInit {
     });
     const orderDetails = [];
     let grandTotal: number = 0;
+    console.log('grandTotal', this.itemList);
     event.forEach((data, index) => {
         if (data) {
+          console.log('data', data);
+          console.log('this.itemList[index].price', this.itemList[index].price);
           grandTotal += data * this.itemList[index].price;
+          console.log('grandTotal', grandTotal);
+          console.log('---------');          
           const obj: any = {
             itemName : this.itemList[index].itemName ,
             quantity: data,
@@ -54,6 +61,7 @@ export class ItemsComponent implements OnInit {
             vId : this.vendorId
           };
           orderDetails.push(obj);
+          console.log('obj', obj);
         }
     });
     localStorage.setItem('cart', JSON.stringify(orderDetails));

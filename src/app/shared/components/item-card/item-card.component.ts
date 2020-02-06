@@ -16,9 +16,10 @@ export class ItemCardComponent implements OnInit {
   @Input() index: string;
   @Input() length: number;
   @Output() itemsChanged = new EventEmitter();
-  @ViewChildren('itemCard') itemCard: QueryList<ElementRef>;
+  @ViewChildren('itemCard') itemCard: any;
   @ViewChildren('itemMenu') itemMenu: QueryList<ElementRef>;
-  public selectedItems: any;
+  @Input() selectedItems: Array<any>;
+  // public selectedItems: any;
 
   constructor() {
 
@@ -30,12 +31,8 @@ export class ItemCardComponent implements OnInit {
 
   // Pass the value changed event to the parent component
   public valueChanged(index): void {
-    let val;
-    this.itemCard.forEach((native) => {
-      val = parseInt(native.nativeElement.value, 10);
-    });
-    this.selectedItems[index] = val;
+    this.selectedItems[index] = parseInt(this.itemCard._results[0].nativeElement.value, 10);
     this.itemsChanged.emit(this.selectedItems);
-    console.log('tged', this.selectedItems);
+    // console.log('tged', this.selectedItems);
   }
 }

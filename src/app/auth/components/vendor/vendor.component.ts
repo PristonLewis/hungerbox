@@ -24,7 +24,7 @@ export class VendorComponent implements OnInit {
       itemName: ['', Validators.required],
       itemType: ['Select Role', Validators.required],
       price: ['', Validators.required],
-      userid: ['', Validators.required],
+      userId: ['2'],
       quantity: ['', Validators.required],
 
 

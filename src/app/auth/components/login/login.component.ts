@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
     }
     if (this.registerForm.value.roleName == 'user') {
 
-      this.router.navigate(['/vendors']);
+      this.router.navigate(['/list']);
 
     }
 

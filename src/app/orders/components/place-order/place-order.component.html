@@ -5,8 +5,8 @@
     <div class="col-sm-12" #itemCard *ngFor="let item of myOrderList; let i = index">
         <app-item-card  [mainContent]="item.itemName" [subContent]="'Price : ' + item.price+'\n Qty : ' + item.quantity "></app-item-card>
     </div>
-  </div> <br>
-  <h2>Total : {{myOrderList[0].total}}</h2>
+  </div> <br>   
+  <h2>Total : {{myOrderList[myOrderList.length - 1].total}}</h2>
   <button class="btn btn-danger" (click)="placeOrder()">Click here to pay</button>
 
   <div  class="modal" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

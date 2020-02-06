@@ -27,4 +27,8 @@ export class HttpService {
     return this.httpClient.post(this.formTheUrl(endpoint), payload);
   }
 
+  public delRequest(endpoint, payload): Observable<any> {
+    return this.httpClient.post(this.formTheUrl(endpoint), payload);
+  }
+
 }

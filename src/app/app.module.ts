@@ -4,15 +4,24 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ItemsModule } from './items/items.module';
+import { VendorsModule } from './vendors/vendors.module';
+import { OrdersModule } from './orders/orders.module';
+import { AuthModule } from './auth/auth.module'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ItemsModule,
+    VendorsModule,
+    OrdersModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

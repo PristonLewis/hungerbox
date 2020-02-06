@@ -1,0 +1,30 @@
+
+<div class="user-container">
+    <h2 style="margin: auto"> Vendor Details</h2>
+    <br>
+    <button class="btn btn-danger" style="width:130px" (click)="addUser()">Add Vendor</button>
+    <br>
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="hidden">Id</th>
+                <th>Vendor ID</th>
+                <th>Vendor Name</th>
+                <th></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vendor of vendors; let i = index">
+                <td class="hidden">{{i}}</td>
+                <td>{{vendor.vendorId}}</td>
+                <td>{{vendor.vendorName}}</td>
+                <td>
+                    <button class="btn btn-success" (click)="deleteUser()"> Delete</button>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

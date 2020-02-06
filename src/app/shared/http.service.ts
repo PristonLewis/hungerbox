@@ -16,7 +16,7 @@ export class HttpService {
   }
 
   private formTheUrl(endpoint): string {
-      return this.getConfigurations() + endpoint;
+    return this.getConfigurations() + endpoint;
   }
 
   public getRequest(endpoint): Observable<any> {
@@ -27,8 +27,8 @@ export class HttpService {
     return this.httpClient.post(this.formTheUrl(endpoint), payload);
   }
 
-  public delRequest(endpoint, payload): Observable<any> {
-    return this.httpClient.post(this.formTheUrl(endpoint), payload);
+  public delRequest(endpoint): Observable<any> {
+    return this.httpClient.delete(this.formTheUrl(endpoint));
   }
 
 }

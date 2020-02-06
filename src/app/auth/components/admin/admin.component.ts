@@ -30,13 +30,19 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/addvendor']);
   };
 
-  deleteUser(id) {
+  deleteUser(id, index) {
     console.log(id)
+    console.log(index);
     this.httpService.delRequest('/vendor/deleteVendor/' + id).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
+      (response) => {
+        console.log(response),
+          console.log(this.vendors)
+        this.vendors.splice(index, 1);
+        console.log(this.vendors)
 
-    )
+
+      })
+
 
   }
 

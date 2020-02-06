@@ -1,5 +1,5 @@
 <!-- main app container -->
-<div class="card m-3">
+<div class="card m-4 logindet">
 
     <div class="card-body">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -27,7 +27,7 @@
 
             <div class="form-row">
                 <div class="form-group col">
-                    <select formControlName="roleName">
+                    <select class="form-control" formControlName="roleName">
                         <option>Select Role</option>
                         <option *ngFor="let roledetail of Roledetails">{{roledetail}}</option>
                     </select>

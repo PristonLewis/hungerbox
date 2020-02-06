@@ -1,9 +1,10 @@
+
 <div class="user-container">
     <h2 style="margin: auto"> Vendor Details</h2>
     <br>
-    <button class="btn btn-danger" style="width:100px" (click)="addUser()">Add Vendor</button>
+    <button class="btn btn-danger" style="width:130px" (click)="addUser()">Add Vendor</button>
     <br>
-
+    <br>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -20,7 +21,7 @@
                 <td>{{vendor.vendorId}}</td>
                 <td>{{vendor.vendorName}}</td>
                 <td>
-                    <button class="btn btn-success" (click)="deleteUser(user)"> Delete</button>
+                    <button class="btn btn-success" (click)="deleteUser()"> Delete</button>
 
                 </td>
             </tr>

@@ -1,4 +1,4 @@
-<div class="jumbotron" id="demo">
+<div class="jumbotron" id="demo" style="background-image: url(../../../assets/4.jfif);">
     <h1>My Cart</h1>
   </div>
 <div class="row" id="demo">    
@@ -7,7 +7,7 @@
     </div>
   </div> <br>   
   <h2>Total : {{myOrderList[myOrderList.length - 1].total}}</h2>
-  <button class="btn btn-danger" (click)="placeOrder()">Click here to pay</button>
+  <button class="btn btn-outline-danger" (click)="placeOrder()">Click here to pay</button>
 
   <div  class="modal" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

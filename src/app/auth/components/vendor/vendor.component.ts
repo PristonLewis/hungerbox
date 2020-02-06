@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/http.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-vendor',
@@ -22,14 +22,10 @@ export class VendorComponent implements OnInit {
     this.additems = this.formBuilder.group({
 
       itemName: ['', Validators.required],
-      itemType: ['Select Role', Validators.required],
+      itemType: ['', Validators.required],
       price: ['', Validators.required],
-      userId: ['2'],
       quantity: ['', Validators.required],
-
-
-
-
+      userId: [2]
     });
 
 
@@ -42,7 +38,7 @@ export class VendorComponent implements OnInit {
     this.submitted = true;
 
     console.log(this.additems.value);
-    this.httpService.postRequest('/item/addItem', this.additems.value).subscribe(
+    this.httpService.postRequest('/items/addItem', this.additems.value).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     )

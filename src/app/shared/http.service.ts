@@ -31,4 +31,8 @@ export class HttpService {
     return this.httpClient.delete(this.formTheUrl(endpoint));
   }
 
+  public postCustom(endpoint, payload): Observable<any> {
+    return this.httpClient.post(endpoint, payload);
+  }
+
 }

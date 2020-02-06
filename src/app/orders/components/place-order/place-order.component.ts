@@ -24,7 +24,7 @@ export class PlaceOrderComponent implements OnInit {
       vendorId: this.myOrderList[0].vid,
       userId: '1'
     };
-    this.http.postRequest('placeOrder', payload).subscribe((data: any) => {
+    this.http.postCustom('http://10.117.189.47:6548/placeOrder', payload).subscribe((data: any) => {
       this.confirmationMessage = 'Order placed successfully.';
       this.statusFlag = true;
       $('#successModal').modal('show');

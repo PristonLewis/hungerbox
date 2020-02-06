@@ -4,7 +4,7 @@
     <div class="card-body">
         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="form-group col">
-                <label>First Name</label>
+                <label>User Name</label>
                 <input type="text" formControlName="uName" class="form-control"
                     [ngClass]="{ 'is-invalid': submitted && f.uName.errors }" />
                 <div *ngIf="submitted && f.uName.errors" class="invalid-feedback">
